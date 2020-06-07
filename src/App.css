@@ -13,8 +13,17 @@
   }
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  
+  height: 00vh;
+}
+
 .App-header {
-  background-color: #282c34;
+  background-color: #2d2d2d;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -26,6 +35,30 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.Order-Form {
+  flex-direction: row; 
+}
+
+.flex-container {
+  display: flex;
+  min-height: 600px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.status_column_heading{
+  font-weight: 600;
+}
+
+.footer {
+  justify-content: center;
+  align-items: center;
+}
+
+.status_column{
+  width:300px;
 }
 
 @keyframes App-logo-spin {
