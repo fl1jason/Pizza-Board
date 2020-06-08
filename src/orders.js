@@ -35,7 +35,7 @@ export const Orders = () => {
     }
 
     const getOrders = (status) => {
-        return (pizzaOrders.filter(order => order.Status === status));
+        return (pizzaOrders.filter(order => order.status === status));
     }
 
     if (pizzaOrders)
@@ -45,17 +45,23 @@ export const Orders = () => {
             <div className="flex-container">
                 <div className="status_column">
                 <p className="status_column_heading">Preparing ...</p>
-                    {getOrders('Pending').map(order => (
-                        <div key={order.id}>{order.Customer}</div>
+                    {getOrders('confirmed').map(order => (
+                        <div key={order.id}>{order.customer}</div>
                     ))}
                 </div>
                 <div className="status_column">
                 <p className="status_column_heading">Please Collect</p>
-                    {getOrders('Complete').map(order => (
-                        <div key={order.id}>{order.Customer}</div>
+                    {getOrders('ready').map(order => (
+                        <div key={order.id}>{order.customer}</div>
                     ))}
                 </div>
                 <div className="status_column">
+                <p className="status_column_heading">On Route</p>
+                    {getOrders('on_route').map(order => (
+                        <div key={order.id}>{order.customer}</div>
+                    ))}
+                </div>
+                <div className="status_column status">
                     <p>{status}</p>
                 </div>
             </div>
