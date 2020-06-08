@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import {db} from "./firestore";
 
+import banner from './assets/SaltAndPepperBanner.jpg';
+import logo from './assets/pizza.png';
+
 export const Orders = () => {
 
     const [pizzaOrders, setPizzaOrders] = useState(null);
@@ -18,10 +21,7 @@ export const Orders = () => {
             console.log("Received a New Order");
             const allOrders = [];
             docSnapshot.docs.forEach(doc => {    
-                const {id, Customer, Status} = doc.data();
                     allOrders.push(doc.data());
-                
-                console.log(`Added Customer ${Customer} with Status ${Status}`);
             });
 
             setPizzaOrders(allOrders);
@@ -41,7 +41,8 @@ export const Orders = () => {
     if (pizzaOrders)
     {
         return (
-        <div className="wrapper">
+        <div className="">
+            <img src={banner} className="banner" />
             <div className="flex-container">
                 <div className="status_column">
                 <p className="status_column_heading">Preparing ...</p>
@@ -62,6 +63,7 @@ export const Orders = () => {
                     ))}
                 </div>
                 <div className="status_column status">
+                    <img src={logo} className="App-logo" />
                     <p>{status}</p>
                 </div>
             </div>

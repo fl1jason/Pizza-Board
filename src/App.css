@@ -13,13 +13,9 @@
   }
 }
 
-.wrapper {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  
-  height: 00vh;
+.banner{
+  height: 40vmin;
+  width: 100%;
 }
 
 .App-header {
