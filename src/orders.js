@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {db} from "./firestore";
+import ReactTextTransition, { presets } from "react-text-transition";
 
 import banner from './assets/SaltAndPepperBanner.jpg';
 import logo from './assets/pizza.png';
@@ -8,6 +9,7 @@ export const Orders = () => {
 
     const [pizzaOrders, setPizzaOrders] = useState(null);
     const [status, setStatus] = useState("");
+    const [display, setDisplay] = useState(true);
 
     useEffect(() => {
         listenForOrders();
@@ -34,6 +36,10 @@ export const Orders = () => {
           });
     }
 
+    const displayValue = (order) => {
+        return (display == true? order.id : order.customer);
+    }
+
     const getOrders = (status) => {
         return (pizzaOrders.filter(order => order.status === status));
     }
@@ -47,24 +53,30 @@ export const Orders = () => {
                 <div className="status_column">
                 <p className="status_column_heading">Preparing ...</p>
                     {getOrders('confirmed').map(order => (
-                        <div key={order.id}>{order.customer}</div>
+                        <div key={order.id}>{displayValue(order)}</div>
                     ))}
                 </div>
                 <div className="status_column">
                 <p className="status_column_heading">Please Collect</p>
                     {getOrders('ready').map(order => (
-                        <div key={order.id}>{order.customer}</div>
+                        <div key={order.id}>{displayValue(order)}</div>
                     ))}
                 </div>
                 <div className="status_column">
                 <p className="status_column_heading">On Route</p>
                     {getOrders('on_route').map(order => (
-                        <div key={order.id}>{order.customer}</div>
+                        <div key={order.id}>    
+                            {displayValue(order)}
+                        </div>
                     ))}
                 </div>
                 <div className="status_column status">
                     <img src={logo} className="App-logo" />
-                    <p>{status}</p>
+                    <ReactTextTransition
+                        className="status-text" 
+                        text={status}
+                        overflow
+                    />
                 </div>
             </div>
         </div>
