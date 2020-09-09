@@ -32,7 +32,7 @@ export const Orders = () => {
             setStatus(`Updated ${now.toLocaleTimeString()}`);
       
           }, err => {
-            console.log(`Encountered error: ${err}`);
+            console.log(`Encountered an error: ${err}`);
           });
     }
 
